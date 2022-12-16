@@ -43,8 +43,8 @@ namespace LAB3Test.Models
                                 };
                 foreach (var grades in allGrades)
                 {
-                    Console.WriteLine($"Name:{grades.FirstName} {grades.LastName} \nGrade:{grades.Grade} {grades.GradeDate} \nCourse: {grades.CourseName}");
-                    Console.WriteLine("-----------------------------------------");
+                    Console.WriteLine($"Name: {grades.FirstName} {grades.LastName} \nGrade: {grades.Grade} {grades.GradeDate} \nCourse: {grades.CourseName}");
+                    Console.WriteLine(new string('-', (30)));
                 }
                 TextClass.PressEnter();
                 MenuClass.Run();

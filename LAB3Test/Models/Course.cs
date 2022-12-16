@@ -40,8 +40,8 @@ namespace LAB3Test.Models
                 
                 foreach (var item in allCourses)
                 {
-                    Console.WriteLine($"{item.CourseName} \nAverage grade:{item.AveGrade} | Max grade:{item.MaxGrade} | Lowest grade:{item.LowGrade}");
-                    Console.WriteLine("--------------------------------------------------------");
+                    Console.WriteLine($"Course: {item.CourseName} \nAverage grade:{item.AveGrade} | Max grade:{item.MaxGrade} | Lowest grade:{item.LowGrade}");
+                    Console.WriteLine(new string('-', (30)));
                 }
             }
             TextClass.PressEnter();

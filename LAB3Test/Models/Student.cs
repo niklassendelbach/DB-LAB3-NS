@@ -64,7 +64,7 @@ namespace LAB3Test.Models
         }
         public static void DisplayStudentFnAsc()
         {
-            Console.WriteLine("\n Sorted by first name ascending:");
+            Console.WriteLine("Sorted by first name ascending:\n");
             using(var context = new SenHSContext())
             {
                 var allStudents = from c in context.Students
@@ -74,12 +74,13 @@ namespace LAB3Test.Models
                 foreach (var students in allStudents)
                 {
                     Console.WriteLine($"Name: {students.FirstName} {students.LastName}");
+                    Console.WriteLine(new string('-', (30)));
                 }
             }
         }
         public static void DisplayStudentFnDesc()
         {
-            Console.WriteLine("\nSorted by first name descending");
+            Console.WriteLine("Sorted by first name descending\n");
             using (var context = new SenHSContext())
             {
                 var allStudents = from c in context.Students
@@ -89,12 +90,13 @@ namespace LAB3Test.Models
                 foreach (var students in allStudents)
                 {
                     Console.WriteLine($"Name: {students.FirstName} {students.LastName}");
+                    Console.WriteLine(new string('-', (30)));
                 }
             }
         }
         public static void DisplayStudentLnAsc()
         {
-            Console.WriteLine("\n Sorted by last name ascending:");
+            Console.WriteLine("Sorted by last name ascending:\n");
             using (var context = new SenHSContext())
             {
                 var allStudents = from c in context.Students
@@ -104,12 +106,13 @@ namespace LAB3Test.Models
                 foreach (var students in allStudents)
                 {
                     Console.WriteLine($"Name: {students.FirstName} {students.LastName}");
+                    Console.WriteLine(new string('-', (30)));
                 }
             }
         }
         public static void DisplayStudentLnDesc()
         {
-            Console.WriteLine("\n Sorted by last name descending:");
+            Console.WriteLine("Sorted by last name descending:\n ");
             using (var context = new SenHSContext())
             {
                 var allStudents = from c in context.Students
@@ -119,6 +122,7 @@ namespace LAB3Test.Models
                 foreach (var students in allStudents)
                 {
                     Console.WriteLine($"Name: {students.FirstName} {students.LastName}");
+                    Console.WriteLine(new string('-', (30)));
                 }
             }
         }

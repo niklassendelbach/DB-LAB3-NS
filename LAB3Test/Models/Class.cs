@@ -76,6 +76,7 @@ namespace LAB3Test.Models
                 {
 
                     Console.WriteLine($"Name: {students.FirstName} {students.LastName}");
+                    Console.WriteLine(new string('-', (30)));
                 }
             }
         }

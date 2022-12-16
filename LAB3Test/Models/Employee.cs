@@ -61,6 +61,7 @@ namespace LAB3Test.Models
                 {
                     
                     Console.WriteLine($"Name: {employees.FirstName} {employees.LastName}");
+                    Console.WriteLine(new string('-', (30)));
                 }
             }
         }
@@ -75,6 +76,7 @@ namespace LAB3Test.Models
                 foreach (var employees in allEmployees)
                 {
                     Console.WriteLine($"Name: {employees.FirstName} {employees.LastName} \nPosition: {employees.Position}");
+                    Console.WriteLine(new string('-', (30)));
                 }
             }
         }
