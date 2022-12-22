@@ -17,9 +17,33 @@ namespace LAB3Test.Models
         public virtual Course FkCourse { get; set; } = null!;
         public virtual Student FkStudent { get; set; } = null!;
 
-        public static void DisplayCourseGrade()
+        public static void SetNewGrade()
         {
-            Console.WriteLine("SQL");
+            DateTime today = DateTime.Today;
+            Console.WriteLine("Set a new grade");
+            Console.WriteLine("Grade value:");
+            int gradeValue;
+            Int32.TryParse(Console.ReadLine(), out gradeValue);
+            Console.WriteLine("Student ID: ");
+            int studentId;
+            Int32.TryParse(Console.ReadLine(), out studentId);
+            Console.WriteLine("Course ID: ");
+            int courseId;
+            Int32.TryParse(Console.ReadLine(), out courseId);
+            using SenHSContext context = new SenHSContext();
+            CourseGrade cg = new CourseGrade()
+            {
+                GradeValue = gradeValue,
+                GradeDate = today,
+                FkStudentId = studentId,
+                FkCourseId = courseId
+            };
+            context.CourseGrades.Add(cg);
+            context.SaveChanges();
+            Console.WriteLine("New grade is set");
+            Console.WriteLine("Database updated");
+            TextClass.PressEnter();
+            MenuClass.Run();
         }
         public static void DisplayGradesCurrentMonth()
         {
@@ -39,11 +63,13 @@ namespace LAB3Test.Models
                                     LastName = s.LastName,
                                     Grade = cg.GradeValue,
                                     GradeDate = cg.GradeDate,
-                                    CourseName = c.CourseName
+                                    CourseName = c.CourseName,
+                                    TeacherFName = e.FirstName,
+                                    TeacherLName = e.LastName
                                 };
                 foreach (var grades in allGrades)
                 {
-                    Console.WriteLine($"Name: {grades.FirstName} {grades.LastName} \nGrade: {grades.Grade} {grades.GradeDate} \nCourse: {grades.CourseName}");
+                    Console.WriteLine($"Name: {grades.FirstName} {grades.LastName} \nGrade: {grades.Grade} {grades.GradeDate} \nGrade by teacher: {grades.TeacherFName} {grades.TeacherLName} \nCourse: {grades.CourseName}");
                     Console.WriteLine(new string('-', (30)));
                 }
                 TextClass.PressEnter();

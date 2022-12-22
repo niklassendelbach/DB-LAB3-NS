@@ -14,13 +14,14 @@ namespace LAB3Test
             Console.Clear();
             Console.WriteLine("Welcome!");
             Console.WriteLine("You get to choose on the different options below:");
-            Console.WriteLine("1. Display all employees");
-            Console.WriteLine("2. Display all students");
-            Console.WriteLine("3. Display a class");
+            Console.WriteLine("1. Employee information");
+            Console.WriteLine("2. Student information");
+            Console.WriteLine("3. Class information");
             Console.WriteLine("4. Display all grades from last month");
-            Console.WriteLine("5. Display all courses and avarage grade");
+            Console.WriteLine("5. Display all courses and average grade");
             Console.WriteLine("6. Add new students");
             Console.WriteLine("7. Add new employees");
+            Console.WriteLine("8. Set new grade");
             int choice;
             Int32.TryParse(Console.ReadLine(), out choice);
             switch (choice)
@@ -46,7 +47,9 @@ namespace LAB3Test
                 case 7:
                     Employee.AddEmployee();
                     break;
-
+                case 8:
+                    CourseGrade.SetNewGrade();
+                    break;
                 default:
                     Console.WriteLine("Please make your choice in the menu");
                     break;
