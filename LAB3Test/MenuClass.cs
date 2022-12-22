@@ -17,8 +17,8 @@ namespace LAB3Test
             Console.WriteLine("1. Employee information");
             Console.WriteLine("2. Student information");
             Console.WriteLine("3. Class information");
-            Console.WriteLine("4. Display all grades from last month");
-            Console.WriteLine("5. Display all courses and average grade");
+            Console.WriteLine("4. Grade information");
+            Console.WriteLine("5. Display all active courses");
             Console.WriteLine("6. Add new students");
             Console.WriteLine("7. Add new employees");
             Console.WriteLine("8. Set new grade");
@@ -36,10 +36,10 @@ namespace LAB3Test
                     Class.Run();
                     break;
                 case 4:
-                    CourseGrade.DisplayGradesCurrentMonth();
+                    CourseGrade.Run();
                     break;
                 case 5:
-                    Course.DisplayCourse();
+                    Course.DisplayAllCourses();
                     break;
                 case 6:
                     Student.AddStudent();
