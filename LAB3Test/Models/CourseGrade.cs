@@ -3,6 +3,7 @@ using LAB3Test.Extras;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
+using System.Transactions;
 
 namespace LAB3Test.Models
 {
@@ -19,31 +20,46 @@ namespace LAB3Test.Models
 
         public static void SetNewGrade()
         {
-            DateTime today = DateTime.Today;
-            Console.WriteLine("Set a new grade");
-            Console.WriteLine("Grade value:");
-            int gradeValue;
-            Int32.TryParse(Console.ReadLine(), out gradeValue);
-            Console.WriteLine("Student ID: ");
-            int studentId;
-            Int32.TryParse(Console.ReadLine(), out studentId);
-            Console.WriteLine("Course ID: ");
-            int courseId;
-            Int32.TryParse(Console.ReadLine(), out courseId);
-            using SenHSContext context = new SenHSContext();
-            CourseGrade cg = new CourseGrade()
+            
+            using (var context = new SenHSContext())
             {
-                GradeValue = gradeValue,
-                GradeDate = today,
-                FkStudentId = studentId,
-                FkCourseId = courseId
-            };
-            context.CourseGrades.Add(cg);
-            context.SaveChanges();
-            Console.WriteLine("New grade is set");
-            Console.WriteLine("Database updated");
-            TextClass.PressEnter();
-            MenuClass.Run();
+                using (var transaction = context.Database.BeginTransaction())
+                {
+                    DateTime today = DateTime.Today;
+                    Console.WriteLine("Set a new grade");
+                    Console.WriteLine("Grade value:");
+                    int gradeValue;
+                    Int32.TryParse(Console.ReadLine(), out gradeValue);
+                    Console.WriteLine("Student ID: ");
+                    int studentId;
+                    Int32.TryParse(Console.ReadLine(), out studentId);
+                    Console.WriteLine("Course ID: ");
+                    int courseId;
+                    Int32.TryParse(Console.ReadLine(), out courseId);
+                    try
+                    {
+                        CourseGrade cg = new CourseGrade()
+                        {
+                            GradeValue = gradeValue,
+                            GradeDate = today,
+                            FkStudentId = studentId,
+                            FkCourseId = courseId
+                        };
+                        context.CourseGrades.Add(cg);
+                        context.SaveChanges();
+                        transaction.Commit();
+                        Console.WriteLine("New grade is set");
+                        Console.WriteLine("Database updated");
+                        TextClass.PressEnter();
+                        MenuClass.Run();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                    }
+                }
+            }
+            
         }
         public static void DisplayGradesCurrentMonth()
         {
