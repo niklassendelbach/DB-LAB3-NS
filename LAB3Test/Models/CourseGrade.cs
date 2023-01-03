@@ -128,11 +128,12 @@ namespace LAB3Test.Models
             using (var context = new SenHSContext())
             {
                 DateTime today = DateTime.Today;
+                today = today.AddMonths(-1);
                 var allGrades = from s in context.Students
                                 join cg in context.CourseGrades on s.StudentId equals cg.FkStudentId
                                 join c in context.Courses on cg.FkCourseId equals c.CourseId
                                 join e in context.Employees on c.FkEmployeeId equals e.EmployeeId
-                                where cg.GradeDate.Month == today.Month -1 && cg.GradeDate.Year == today.Year
+                                where cg.GradeDate.Month == today.Month && cg.GradeDate.Year == today.Year
                                 select new
                                 {
                                     FirstName = s.FirstName,

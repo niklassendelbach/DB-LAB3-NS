@@ -43,6 +43,8 @@ namespace LAB3Test.Models
                     Console.WriteLine(new string('-', (30)));
                 }
             }
+            TextClass.PressEnter();
+            MenuClass.Run();
         }
         public static void DisplayCourse()
         {
